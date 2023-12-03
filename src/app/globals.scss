@@ -1,0 +1,31 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+html {
+  --bg-primary: #fff;
+  --text-primary: #121212;
+
+  &.dark {
+    --bg-primary: #121212;
+    --text-primary: #fff;
+  }
+}
+
+
+body {
+  overflow-x: hidden;
+  background-color: var(--bg-primary);
+  color: var(--text-primary);
+  transition: background-color 100ms ease-in-out;
+}
+
+.app-container {
+  width: 100%;
+  margin-left: auto;
+  margin-right: auto;
+
+  @media screen and (min-width: 1440px) {
+    width: 1400px;
+  }
+}
