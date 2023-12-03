@@ -5,10 +5,16 @@
 html {
   --bg-primary: #fff;
   --text-primary: #121212;
+  --text-primary-transparent: #12121233;
+  --accent: #00DFA2;
+  --accent-transparent: rgba(0, 223, 162, 0.1);
+  --chakra-colors-gray-800: var(--text-primary) !important;
+  --menu-bg: var(--bg-primary) !important;
 
   &.dark {
     --bg-primary: #121212;
     --text-primary: #fff;
+    --text-primary-transparent: #fff3;
   }
 }
 
