@@ -6,6 +6,7 @@ import AppHeader from '@/components/layout/AppHeader';
 import Providers from '@/app/providers';
 import AppNavbar from "@/components/layout/AppNavbar";
 import AppDate from "@/components/layout/AppDate";
+import AppFooter from "@/components/layout/AppFooter";
 
 const inter = Inter({subsets: ['latin']});
 
@@ -27,6 +28,7 @@ export default function RootLayout({
             <AppDate/>
             <AppNavbar/>
             {children}
+            <AppFooter/>
         </Providers>
         </body>
         </html>
