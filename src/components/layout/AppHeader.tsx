@@ -6,7 +6,7 @@ import Link from 'next/link';
 
 export default function AppHeader() {
   return (
-    <header className={'flex h-[100px] items-center justify-between px-4'}>
+    <header className={'flex h-[100px] items-center justify-between px-6'}>
       <p className={'text-[60px] font-bold'}>SENSE & SCIENCE</p>
       <div className={'flex items-center gap-4'}>
         <Link href={'/login'} className={'no-underline'}>
