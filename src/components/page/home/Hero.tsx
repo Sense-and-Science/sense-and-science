@@ -15,7 +15,7 @@ export default function Hero() {
         overflowY: 'hidden'
     }
 
-    return <div style={heroStyle} className={'relative z-0 flex flex-col justify-center px-[40px]'}>
+    return <div style={heroStyle} className={'relative z-0 mx-4 flex flex-col justify-center px-[40px] xl:mx-6'}>
         <h1 className={'font-500 z-10 flex flex-col text-[2rem] text-[#fff]'}>WELCOME TO THE
             <span className={'font-700 text-[70px]'} style={{lineHeight: '75px'}}>UNIVERSITY OF COLOMBO</span>
             <span className={'font-700 text-[70px]'} style={{lineHeight: '75px'}}>TECH AND SCIENCE BLOG</span>
