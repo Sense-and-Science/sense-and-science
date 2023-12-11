@@ -11,14 +11,15 @@ export default function Hero() {
         backgroundSize: 'cover',
         backgroundPosition: 'center',
         height: '500px',
-        borderRadius: '30px',
         overflowY: 'hidden'
     }
 
-    return <div style={heroStyle} className={'relative z-0 flex flex-col justify-center px-[40px]'}>
-        <h1 className={'font-500 z-10 flex flex-col text-[2rem] text-[#fff]'}>WELCOME TO THE
-            <span className={'font-700 text-[70px]'} style={{lineHeight: '75px'}}>UNIVERSITY OF COLOMBO</span>
-            <span className={'font-700 text-[70px]'} style={{lineHeight: '75px'}}>TECH AND SCIENCE BLOG</span>
+    return <div style={heroStyle}
+                className={'relative z-0 mx-4 flex  flex-col items-center justify-center  rounded-[14px] px-[40px] sm:rounded-[16px] md:items-start md:rounded-[24px] xl:mx-6 xl:rounded-[30px]'}>
+        <h1 className={'font-500 z-10 flex flex-col text-center text-[1.5rem] text-[#fff] md:text-left md:text-[2rem]'}>WELCOME
+            TO THE
+            <span className={'font-700 text-[48px] leading-[20px] md:text-[70px] md:leading-[70px]'}>UNIVERSITY OF COLOMBO</span>
+            <span className={'font-700 text-[48px] md:text-[70px]'}>TECH AND SCIENCE BLOG</span>
         </h1>
         <div className={'mt-4 flex items-center gap-2'}>
             <Image src={compsocLogo.src} alt={'Compsoc Logo'} width={compsocLogo.width} height={compsocLogo.height}
