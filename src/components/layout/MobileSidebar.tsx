@@ -39,7 +39,7 @@ export function MobileSidebar() {
     return (
         <>
             <IconButton aria-label={'sidebar btn'} ref={btnRef} onClick={onOpen} className={'md:hidden'}
-                        icon={<Icon icon={'cil:hamburger-menu'} className={'text-[1.5rem]'}/>}>
+                        icon={<Icon icon={'cil:hamburger-menu'} className={'text-[2.5rem]'}/>}>
             </IconButton>
             <Drawer
                 isOpen={isOpen}
