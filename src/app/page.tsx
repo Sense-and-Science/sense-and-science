@@ -14,10 +14,10 @@ export default function Home() {
                 TRENDING ON SENSE AND SCIENCE
             </SectionHeading>
             <section className={'flex h-[300px] items-center justify-center gap-[2rem]'}>
-                <TrendingArticle/>
-                <TrendingArticle/>
-                <TrendingArticle/>
-                <TrendingArticle/>
+                <TrendingArticle writerName="Donald Norman" title="The Future of Human Computer" date="Oct 24" profilePicture="../assets/images/profile-picture.jpg" trendingArticle="../assets/images/trending-article.jpg"/>
+                <TrendingArticle writerName="Randima Dias" title="The Future of Human Computer" date="Oct 24" profilePicture="../assets/images/profile-picture.jpg" trendingArticle="../assets/images/trending-article.jpg"/>
+                <TrendingArticle writerName="Sheela Sin" title="The Future of Human Computer" date="Oct 24" profilePicture="../assets/images/profile-picture.jpg" trendingArticle="../assets/images/trending-article.jpg"/>
+                <TrendingArticle writerName="Jeshreen Balraj" title="The Future of Human Computer" date="Oct 24" profilePicture="../assets/images/profile-picture.jpg" trendingArticle="../assets/images/trending-article.jpg"/>
             </section>
             <div className={'mt-6 flex flex-col gap-6 xl:flex-row'}>
                 <LatestArticles/>
