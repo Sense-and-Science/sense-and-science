@@ -26,7 +26,7 @@ export default function AppHeader() {
     const unsubscribe = onAuthStateChanged(auth, async (user) => {
       if (!user) {
         removeUser();
-        router.replace('/');
+        // router.replace('/');
         return;
       }
 
@@ -39,10 +39,14 @@ export default function AppHeader() {
       }
     });
 
+
+
     return () => {
       unsubscribe();
     };
-  }, [pathname, removeUser, router, setUser]);
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
 
   const isInTabModeOrLess = useMediaQuery('(max-width: 768px)', { ssr: true });
   return (

@@ -14,8 +14,7 @@ export default function ProfileDropdown() {
   const router = useRouter();
 
   function goToDashboard() {
-    console.log("Clicked")
-    router.push("/dashboard/requests")
+    router.push('/dashboard');
   }
 
   async function logout() {

@@ -69,7 +69,7 @@ function Requests() {
 
   return (
     <div>
-      <h1 className='text-3xl my-8'>New author applications</h1>
+      <h1 className='my-8 text-3xl'>New author applications</h1>
       {loadingApplication && (
         <div>
           <p>Loading, please wait </p>
@@ -173,7 +173,7 @@ function Requests() {
         )}
         {applications && applications.length === 0 && (
           <>
-            <p className='text-3xl font-[200] text-center mt-[175px]'>No new applications, check later</p>
+            <p className='mt-[175px] text-center text-3xl font-[200]'>No new applications, check later</p>
           </>
         )}
       </div>
