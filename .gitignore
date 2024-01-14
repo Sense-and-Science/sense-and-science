@@ -34,3 +34,6 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+.env
+
+sense-and-science-firebase-adminsdk-ht2w4-66a0b7be97.json

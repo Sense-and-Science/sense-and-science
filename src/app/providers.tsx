@@ -1,9 +1,10 @@
 // app/providers.tsx
 'use client';
 
+import React from 'react';
+
 import { CacheProvider } from '@chakra-ui/next-js';
 import { ChakraProvider, extendTheme } from '@chakra-ui/react';
-import React from 'react';
 
 const customTheme = extendTheme({
   colors: {
@@ -13,12 +14,12 @@ const customTheme = extendTheme({
   },
 });
 
-export default function Providers({ children }: {
-  children: React.ReactNode
-}) {
+export default function Providers({ children }: { children: React.ReactNode }) {
   return (
     <CacheProvider>
-      <ChakraProvider theme={customTheme}>{children}</ChakraProvider>
+      <ChakraProvider resetCSS theme={customTheme}>
+        {children}
+      </ChakraProvider>
     </CacheProvider>
   );
 }
