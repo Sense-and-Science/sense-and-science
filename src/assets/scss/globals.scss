@@ -3,8 +3,8 @@
 @tailwind utilities;
 
 @import url('https://fonts.cdnfonts.com/css/uber-move-2');
-
 @import './editor.scss';
+@import 'react-toastify/dist/ReactToastify.css';
 
 html {
   --bg-primary: #fff;

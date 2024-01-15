@@ -55,22 +55,22 @@ export default function DashboardSidebar() {
           </>
         )}
         <Link
-          href={'/dashboard/articles/new'}
+          href={'/dashboard/articles/my-articles'}
           className='flex items-center gap-4 rounded-lg bg-slate-500 px-4 py-2'
           style={{
             backgroundColor:
-              pathname === '/dashboard/articles/new'
+              pathname === '/dashboard/articles/my-articles'
                 ? 'var(--text-primary)'
                 : 'var(--bg-primary)',
             color:
-              pathname === '/dashboard/articles/new'
+              pathname === '/dashboard/articles/my-articles'
                 ? 'var(--bg-primary)'
                 : 'var(--text-primary)',
             transition: 'all 300ms ease-in-out',
           }}
         >
           <Icon icon={'mdi:file-document-edit-outline'} className='text-3xl' />
-          <span>Articles</span>
+          <span>My Articles</span>
         </Link>
       </ul>
     </aside>

@@ -1,11 +1,12 @@
 'use client';
-import {useEffect, useState} from 'react';
-import {IconButton, MenuItem, MenuList} from '@chakra-ui/react';
-import {Menu, MenuButton} from '@chakra-ui/menu';
-import {Icon} from '@iconify/react';
+import { useEffect, useState } from 'react';
+
+import { Menu, MenuButton } from '@chakra-ui/menu';
+import { IconButton, MenuItem, MenuList } from '@chakra-ui/react';
+import { Icon } from '@iconify/react';
 
 export default function ThemeSwitcher() {
-    const [colorMode, setColorMode] = useState<'light' | 'dark'>('dark');
+    const [colorMode, setColorMode] = useState<'light' | 'dark'>('light');
 
     useEffect(() => {
         const htmlElement = document.querySelector('html') as HTMLHtmlElement;

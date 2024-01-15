@@ -1,7 +1,9 @@
+
 import type { Metadata } from 'next';
 import '@/assets/scss/globals.scss';
 
 import { Inter } from 'next/font/google';
+import Head from 'next/head';
 import React from 'react';
 
 import Providers from '@/app/providers';
@@ -10,11 +12,6 @@ import DashboardSidebar from '@/components/layout/DashboardSidebar';
 
 const inter = Inter({ subsets: ['latin'] });
 
-export const metadata: Metadata = {
-  title: 'Sense & Science',
-  description: 'Welcome to the University of Colombo Tech and Science Blog.',
-};
-
 export default function RootLayout({
   children,
 }: {
@@ -22,6 +19,13 @@ export default function RootLayout({
 }) {
   return (
     <html lang='en'>
+      <Head>
+        <title>Sense & Science</title>
+        <meta
+          name='description'
+          content='Welcome to the University of Colombo Tech and Science Blog.'
+        ></meta>
+      </Head>
       <body className={`${inter.className} app-container`}>
         <Providers>
           <DashboardHeader />
