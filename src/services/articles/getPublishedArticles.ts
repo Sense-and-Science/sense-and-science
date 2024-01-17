@@ -11,7 +11,7 @@ export async function getPublishedArticles(
     const articlesQuery = query(
       articleCollection,
       where('status', '==', BlogArticleStatus.PUBLISHED),
-      orderBy('createdAt')
+      orderBy('createdAt', "desc")
     );
     const snapshot = await getDocsFromServer(articlesQuery);
     console.log('Got snapshot with ', snapshot.docs.length, ' docs');
@@ -38,6 +38,7 @@ export async function getPublishedArticles(
     }
     result = articles;
   } catch (e) {
+    console.log((e as Error).message)
     error = e;
   }
   return { result, error };
