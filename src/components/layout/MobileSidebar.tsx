@@ -1,18 +1,16 @@
+"use client"
+
+import Link from 'next/link';
+import React from 'react';
+
+import OutlineButton from '@/components/util/OutlineButton';
+import ThemeSwitcher from '@/components/util/ThemeSwitcher';
+import { useDisclosure } from '@chakra-ui/hooks';
 import {
-    Drawer,
-    DrawerBody,
-    DrawerFooter,
-    DrawerHeader,
-    DrawerOverlay,
-    DrawerContent,
-    DrawerCloseButton, Button, Input, IconButton,
-} from '@chakra-ui/react'
-import {useDisclosure} from "@chakra-ui/hooks";
-import React from "react";
-import {Icon} from "@iconify/react";
-import Link from "next/link";
-import ThemeSwitcher from "@/components/util/ThemeSwitcher";
-import OutlineButton from "@/components/util/OutlineButton";
+    Button, Drawer, DrawerBody, DrawerCloseButton, DrawerContent, DrawerFooter, DrawerHeader,
+    DrawerOverlay, IconButton, Input
+} from '@chakra-ui/react';
+import { Icon } from '@iconify/react';
 
 const links = [
     {

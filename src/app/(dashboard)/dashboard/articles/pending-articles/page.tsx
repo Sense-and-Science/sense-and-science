@@ -1,18 +1,18 @@
 'use client';
-import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 import { useEffect, useState } from 'react';
+import { toast } from 'react-toastify';
 
 import { services } from '@/services';
 import { useAuthStore } from '@/stores';
 import { BlogArticleCompund } from '@/types';
 import {
-    Button, IconButton, Menu, MenuButton, MenuItem, MenuList, Table, TableContainer, Tbody, Td,
-    Tfoot, Th, Thead, Tr
+    IconButton, Menu, MenuButton, MenuItem, MenuList, Table, TableContainer, Tbody, Td, Th, Thead,
+    Tr
 } from '@chakra-ui/react';
 import { Icon } from '@iconify/react/dist/iconify.js';
 
-function MyArticles() {
+function PendingArticles() {
   const router = useRouter();
 
   const { user, profile } = useAuthStore();
@@ -23,38 +23,56 @@ function MyArticles() {
 
   const [articles, setArticles] = useState<BlogArticleCompund[] | null>(null);
 
-  useEffect(() => {
-    async function loadArticles() {
-      if (user && profile) {
-        setLoadingArticles(true);
-        const { result, error } = await services.articles.getSelfArticles(
-          user.uid,
-          `${profile.firstName} ${profile.lastName}`,
-          profile.contactNo || ''
-        );
-        if (result) {
-          console.log(result);
-          setArticles(result);
-        } else if (error) {
-          console.log((error as Error).message);
-          alert('Error loading author articles, please try again later');
-        }
-
-        setLoadingArticles(false);
+  async function loadArticles() {
+    if (user && profile) {
+      setLoadingArticles(true);
+      const { result, error } = await services.articles.getPendingArticles();
+      if (result) {
+        console.log(result);
+        setArticles(result);
+      } else if (error) {
+        console.log((error as Error).message);
+        alert('Error loading author articles, please try again later');
       }
+
+      setLoadingArticles(false);
     }
+  }
+  useEffect(() => {
     loadArticles();
   }, [profile, user]);
 
-  async function chnageStatus(userId: string, applicationId: string) {}
+  async function publishArticle(articleId: string) {
+    setApproving(true);
+    const { error, result } = await services.articles.publishArticle(articleId);
+    if (error) {
+      toast((error as Error).message, { type: 'error' });
+    } else {
+      toast('Successfully published', { type: 'success' });
+      await loadArticles();
+    }
+    setApproving(false);
+  }
+
+  async function requestUpdateForArticle(articleId: string) {
+    setDeclining(true);
+    const { error, result } =
+      await services.articles.requestUpdateForArticle(articleId);
+    if (error) {
+      toast((error as Error).message, { type: 'error' });
+    } else {
+      toast('Declined, contact author and request updates', {
+        type: 'success',
+      });
+      await loadArticles();
+    }
+    setDeclining(false);
+  }
 
   return (
     <div>
-      <h1 className='my-8 text-3xl flex items-center justify-between'>
-        New author articles
-        <Link href={'/dashboard/articles/new'}>
-          <Button colorScheme='teal'>Write new article</Button>
-        </Link>
+      <h1 className='my-8 flex items-center justify-between text-3xl'>
+        Pending Articles
       </h1>
       {loadingApplication && (
         <div>
@@ -99,7 +117,7 @@ function MyArticles() {
                           >
                             <MenuItem
                               onClick={() => {
-                                chnageStatus(article.userId, article.id);
+                                publishArticle(article.id);
                               }}
                               className={
                                 'bg-[var(--bg-primary)] transition hover:bg-[var(--text-primary-transparent)]'
@@ -115,11 +133,11 @@ function MyArticles() {
                                 />
                               }
                             >
-                              Approve
+                              Publish article
                             </MenuItem>
                             <MenuItem
                               onClick={() => {
-                                chnageStatus(article.userId, article.id);
+                                requestUpdateForArticle(article.id);
                               }}
                               className={
                                 'bg-[var(--bg-primary)] transition hover:bg-[var(--text-primary-transparent)]'
@@ -135,7 +153,7 @@ function MyArticles() {
                                 />
                               }
                             >
-                              Decline
+                              Request updates
                             </MenuItem>
                           </MenuList>
                         </Menu>
@@ -159,4 +177,4 @@ function MyArticles() {
   );
 }
 
-export default MyArticles;
+export default PendingArticles;

@@ -1,5 +1,7 @@
-import React, {PropsWithChildren} from 'react';
-import {forwardRef} from '@chakra-ui/react';
+"use client"
+import React, { PropsWithChildren } from 'react';
+
+import { forwardRef } from '@chakra-ui/react';
 
 export interface OutlineButtonProps extends PropsWithChildren {
     accent?: boolean;

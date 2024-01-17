@@ -1,5 +1,4 @@
-
-import type { Metadata } from 'next';
+"use client";
 import '@/assets/scss/globals.scss';
 
 import { Inter } from 'next/font/google';

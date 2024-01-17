@@ -18,10 +18,12 @@ export interface BlogArticle {
   status?: BlogArticleStatus;
   content: string;
   imageIds: string[];
+  coverImage?: string
 }
 
 export interface BlogArticleCompund extends BlogArticle {
   authorName: string;
   authorContactNo: string;
   id: string;
+  authorAvatar: string | undefined
 }

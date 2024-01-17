@@ -1,7 +1,8 @@
 "use client";
 
-import Link from "next/link";
-import {useMediaQuery} from "@chakra-ui/react";
+import Link from 'next/link';
+
+import { useMediaQuery } from '@chakra-ui/react';
 
 const links = [
     {
@@ -25,7 +26,7 @@ export default function AppNavbar() {
     const isInTabModeOrLess = useMediaQuery("(max-width: 768px)", {ssr: true})
 
     return !isInTabModeOrLess[0]  && <nav className={'flex px-4 py-6 text-[18px] font-[500] xl:px-6'}>
-        <ul className={'flex items-center gap-10'}>
+        <ul className={'ml-4 flex items-center gap-10'}>
             {
                 links.map(link => {
                     return <li key={link.text}>

@@ -25,6 +25,7 @@ export async function getSelfArticles(
         ...applicationData,
         authorContactNo,
         authorName,
+        authorAvatar: "",
         userId,
         id: ds.id,
       };

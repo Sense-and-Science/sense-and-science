@@ -1,6 +1,8 @@
-import latestArticle from '@/assets/images/latest-article.jpg'
-import profilePicture from '@/assets/images/profile-picture.jpg'
-import Image from "next/image"
+"use client"
+import Image from 'next/image';
+
+import latestArticle from '@/assets/images/latest-article.jpg';
+import profilePicture from '@/assets/images/profile-picture.jpg';
 
 interface LatestArticleProps {
     // latestArticle: string,
