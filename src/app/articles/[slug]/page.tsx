@@ -5,6 +5,7 @@ import { enUS } from 'date-fns/locale';
 import parseHtml from 'html-react-parser';
 import Image from 'next/image';
 
+import BlogPage from '@/components/layout/BlogPage';
 import { useArticlesStore } from '@/stores';
 
 function removeEmptyPTags(htmlString: string): string {
@@ -32,7 +33,7 @@ export default function ArticlePage({
   const { getArticle } = useArticlesStore();
   const article = getArticle(decodeURIComponent(slug));
   return (
-    <>
+    <BlogPage>
       <title>
         {article ? article.title : 'Article not found - Sense & Science'}
       </title>
@@ -82,6 +83,6 @@ export default function ArticlePage({
           </article>
         )}
       </div>
-    </>
+    </BlogPage>
   );
 }

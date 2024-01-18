@@ -2,15 +2,10 @@
 import '@/assets/scss/globals.scss';
 
 import { Inter } from 'next/font/google';
-import Head from 'next/head';
 import React, { useEffect } from 'react';
 import { toast } from 'react-toastify';
 
 import Providers from '@/app/providers';
-import AppDate from '@/components/layout/AppDate';
-import AppFooter from '@/components/layout/AppFooter';
-import AppHeader from '@/components/layout/AppHeader';
-import AppNavbar from '@/components/layout/AppNavbar';
 import { services } from '@/services';
 import { useArticlesStore } from '@/stores';
 
@@ -53,16 +48,7 @@ export default function RootLayout({
         />
       </head>
       <body className={`${inter.className}`}>
-        
-        <Providers>
-          <main className='app-container'>
-            <AppHeader />
-            <AppDate />
-            <AppNavbar />
-            <div className='px-4'>{children}</div>
-          </main>
-          <AppFooter />
-        </Providers>
+        <Providers>{children}</Providers>
       </body>
     </html>
   );
