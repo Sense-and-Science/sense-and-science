@@ -19,3 +19,8 @@ export interface BlogUser {
   createdAt: Timestamp;
   updatedAt: Timestamp;
 }
+
+export interface BlogUserCompound extends BlogUser {
+  id: string
+}
+ 

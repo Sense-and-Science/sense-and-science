@@ -5,20 +5,23 @@ import Image from 'next/image';
 import Link from 'next/link';
 import React from 'react';
 
-import { BlogArticleCompund } from '@/types';
+import { BlogArticleBrief } from '@/types';
 
 interface ArticleProps {
-  article: BlogArticleCompund;
+  article: BlogArticleBrief;
 }
 
 export default function TrendingArticle({ article }: ArticleProps) {
-  const { authorName, title, createdAt, authorAvatar } = article;
+  const { authorName, title, updatedAt, authorAvatar } = article;
 
   return (
     <>
-      <Link href={`/articles/${article.slug}`} className='article flex flex-col'>
+      <Link
+        href={`/articles/${article.slug}`}
+        className='article flex flex-col'
+      >
         <Image
-          src={article.coverImage || ""}
+          src={article.coverImage || ''}
           alt={'Trending Article'}
           width={300}
           height={180}
@@ -38,7 +41,7 @@ export default function TrendingArticle({ article }: ArticleProps) {
         </div>
         <h3 className={'text-wrap text-[20px] font-bold'}>{title}</h3>
         <p className={'mt-2 text-[12px]'}>
-          {format(createdAt.toDate(), 'MMM dd, yyyy', { locale: enUS })}
+          {format(updatedAt.toDate(), 'MMM dd, yyyy', { locale: enUS })}
         </p>
       </Link>
     </>

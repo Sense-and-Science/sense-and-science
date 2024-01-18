@@ -9,6 +9,7 @@ import { Dispatch, LegacyRef, SetStateAction, useEffect, useMemo, useRef, useSta
 import { SubmitHandler, useForm } from 'react-hook-form';
 import { toast, ToastContainer } from 'react-toastify';
 
+import DashboardPage from '@/components/layout/DashboardPage';
 import { services } from '@/services';
 import { useAuthStore } from '@/stores';
 import { uploadFileByFileForBlog } from '@/utils';
@@ -44,7 +45,7 @@ type NewArticleInputs = {
 export default function NewArticle() {
   const { user } = useAuthStore();
 
-  const router = useRouter()
+  const router = useRouter();
 
   const {
     handleSubmit,
@@ -110,7 +111,7 @@ export default function NewArticle() {
         imageIds: usedImageIds,
         title: values.title.trim(),
         userId: user.uid,
-        coverImage: values.coverImage
+        coverImage: values.coverImage,
       });
       if (error) {
         if ((error as Error).message === 'Title already exists') {
@@ -129,7 +130,7 @@ export default function NewArticle() {
       if (result) {
         clearErrors();
         toast('Article successfully submitted', { type: 'success' });
-        router.replace("/dashboard/articles/my-articles")
+        router.replace('/dashboard/articles/my-articles');
       }
     }
   };
@@ -140,7 +141,7 @@ export default function NewArticle() {
     const titleValue = values.title || '';
     const descriptionValue = values.description || '';
     const slugValue = values.slug || '';
-    const coverImageValue = values.coverImage || null
+    const coverImageValue = values.coverImage || null;
     if (
       titleValue.trim().length > 50 &&
       descriptionValue.trim().length > 150 &&
@@ -156,7 +157,7 @@ export default function NewArticle() {
         imageIds: usedImageIds,
         title: titleValue,
         userId: user.uid,
-        coverImage: coverImageValue
+        coverImage: coverImageValue,
       });
       if (error) {
         if ((error as Error).message === 'Title already exists') {
@@ -239,128 +240,132 @@ export default function NewArticle() {
   );
 
   return (
-    <div className='pb-16'>
-      <h1 className='my-8 text-3xl'>Write a new article</h1>
-      <form onSubmit={handleSubmit(onSubmit)} className='flex flex-col gap-4'>
-        <FormControl isInvalid={!!errors.title}>
-          <FormLabel htmlFor='title'>Title</FormLabel>
-          <Input
-            id='title'
-            {...registerInput('title', {
-              required: 'Title is required',
-              minLength: {
-                value: 50,
-                message: 'Minimum length should be 50 for SEO purposes',
-              },
-              maxLength: {
-                value: 60,
-                message: 'Maximum length should be 60 for SEO purposes',
-              },
-            })}
-            type='text'
-          />
-          <FormHelperText
-            style={{
-              color: titleLength > 60 || titleLength < 50 ? 'red' : '',
-            }}
-          >{`${titleLength} of 50-60 characters`}</FormHelperText>
-          <FormErrorMessage>
-            {errors.title && errors.title.message}
-          </FormErrorMessage>
-        </FormControl>
-        <FormControl isInvalid={!!errors.slug}>
-          <FormLabel htmlFor='slug'>
-            Slug (a url friendly string,auto generated from the title)
-          </FormLabel>
-          <Input
-            id='slug'
-            {...registerInput('slug', {
-              required: 'Slug is required',
-            })}
-            readOnly
-            disabled
-            type='text'
-          />
-          <FormErrorMessage>
-            {errors.slug && errors.slug.message}
-          </FormErrorMessage>
-        </FormControl>
-        <FormControl isInvalid={!!errors.coverImage}>
-          <FormLabel htmlFor='cover-image'>Upload the cover image</FormLabel>
-          <Input
-            id='cover-image'
-            {...restOfTheInputParams}
-            onChange={handleUploadedFile}
-            ref={(e) => {
-              registerRef(e);
-            }}
-            type='file'
-            accept='image/*'
-          />
-          <FormErrorMessage>
-            {errors.coverImage && errors.coverImage.message}
-          </FormErrorMessage>
-        </FormControl>
-        {coverImagePreview !== '' ? (
-          <Image
-            src={coverImagePreview}
-            alt='preview of profile picture'
-            width={'250'}
-            height={'250'}
-            className='mx-auto aspect-square h-auto rounded-full object-cover'
-          />
-        ) : null}
+    <DashboardPage>
+      <div className='pb-16'>
+        <h1 className='my-8 text-3xl'>Write a new article</h1>
+        <form onSubmit={handleSubmit(onSubmit)} className='flex flex-col gap-4'>
+          <FormControl isInvalid={!!errors.title}>
+            <FormLabel htmlFor='title'>Title</FormLabel>
+            <Input
+              id='title'
+              {...registerInput('title', {
+                required: 'Title is required',
+                minLength: {
+                  value: 50,
+                  message: 'Minimum length should be 50 for SEO purposes',
+                },
+                maxLength: {
+                  value: 60,
+                  message: 'Maximum length should be 60 for SEO purposes',
+                },
+              })}
+              type='text'
+            />
+            <FormHelperText
+              style={{
+                color: titleLength > 60 || titleLength < 50 ? 'red' : '',
+              }}
+            >{`${titleLength} of 50-60 characters`}</FormHelperText>
+            <FormErrorMessage>
+              {errors.title && errors.title.message}
+            </FormErrorMessage>
+          </FormControl>
+          <FormControl isInvalid={!!errors.slug}>
+            <FormLabel htmlFor='slug'>
+              Slug (a url friendly string,auto generated from the title)
+            </FormLabel>
+            <Input
+              id='slug'
+              {...registerInput('slug', {
+                required: 'Slug is required',
+              })}
+              readOnly
+              disabled
+              type='text'
+            />
+            <FormErrorMessage>
+              {errors.slug && errors.slug.message}
+            </FormErrorMessage>
+          </FormControl>
+          <FormControl isInvalid={!!errors.coverImage}>
+            <FormLabel htmlFor='cover-image'>Upload the cover image</FormLabel>
+            <Input
+              id='cover-image'
+              {...restOfTheInputParams}
+              onChange={handleUploadedFile}
+              ref={(e) => {
+                registerRef(e);
+              }}
+              type='file'
+              accept='image/*'
+            />
+            <FormErrorMessage>
+              {errors.coverImage && errors.coverImage.message}
+            </FormErrorMessage>
+          </FormControl>
+          {coverImagePreview !== '' ? (
+            <Image
+              src={coverImagePreview}
+              alt='preview of profile picture'
+              width={'250'}
+              height={'250'}
+              className='mx-auto aspect-square h-auto rounded-full object-cover'
+            />
+          ) : null}
 
-        <FormControl isInvalid={!!errors.description}>
-          <FormLabel htmlFor='description'>Description (For SEO)</FormLabel>
-          <Textarea
-            id='description'
-            {...registerInput('description', {
-              required: 'Description is required',
-              minLength: {
-                value: 150,
-                message: 'Minimum length should be 65 for SEO purposes',
-              },
-              maxLength: {
-                value: 160,
-                message: 'Maximum length should be 160 for SEO purposes',
-              },
-            })}
-          />
-          <FormHelperText
-            style={{
-              color:
-                descriptionLength > 160 || descriptionLength < 150 ? 'red' : '',
-            }}
-          >{`${descriptionLength} of 150-165 characters`}</FormHelperText>
-          <FormErrorMessage>
-            {errors.description && errors.description.message}
-          </FormErrorMessage>
-        </FormControl>
-        <div>
-          <FormLabel>Content (What you see is what you get)</FormLabel>
-          {/* <Editor data={data} holder='editorjs-container' onChange={setData} /> */}
-          <ReactQuillEditor
-            forwardedRef={editorRef}
-            theme='snow'
-            value={content}
-            onChange={setContent}
-            readOnly={false}
-            modules={quillModules}
-          />
-        </div>
-        <div className='flex items-center justify-end'>
-          <Button
-            type='submit'
-            colorScheme='teal'
-            isLoading={isSubmitting}
-            loadingText='Submitting'
-          >
-            Submit to be reviewed
-          </Button>
-        </div>
-      </form>
-      <ToastContainer />
-    </div>
+          <FormControl isInvalid={!!errors.description}>
+            <FormLabel htmlFor='description'>Description (For SEO)</FormLabel>
+            <Textarea
+              id='description'
+              {...registerInput('description', {
+                required: 'Description is required',
+                minLength: {
+                  value: 150,
+                  message: 'Minimum length should be 65 for SEO purposes',
+                },
+                maxLength: {
+                  value: 160,
+                  message: 'Maximum length should be 160 for SEO purposes',
+                },
+              })}
+            />
+            <FormHelperText
+              style={{
+                color:
+                  descriptionLength > 160 || descriptionLength < 150
+                    ? 'red'
+                    : '',
+              }}
+            >{`${descriptionLength} of 150-165 characters`}</FormHelperText>
+            <FormErrorMessage>
+              {errors.description && errors.description.message}
+            </FormErrorMessage>
+          </FormControl>
+          <div>
+            <FormLabel>Content (What you see is what you get)</FormLabel>
+            {/* <Editor data={data} holder='editorjs-container' onChange={setData} /> */}
+            <ReactQuillEditor
+              forwardedRef={editorRef}
+              theme='snow'
+              value={content}
+              onChange={setContent}
+              readOnly={false}
+              modules={quillModules}
+            />
+          </div>
+          <div className='flex items-center justify-end'>
+            <Button
+              type='submit'
+              colorScheme='teal'
+              isLoading={isSubmitting}
+              loadingText='Submitting'
+            >
+              Submit to be reviewed
+            </Button>
+          </div>
+        </form>
+        <ToastContainer />
+      </div>
+    </DashboardPage>
   );
 }

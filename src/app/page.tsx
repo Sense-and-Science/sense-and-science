@@ -1,5 +1,6 @@
 'use client';
 import TrendingArticles from '@/components/blog/TrendingArticles';
+import BlogPage from '@/components/layout/BlogPage';
 import AuthorOfTheMonth from '@/components/page/home/AuthorOfTheMonth';
 import Hero from '@/components/page/home/Hero';
 import LatestArticles from '@/components/page/home/LatestArticles';
@@ -9,7 +10,7 @@ import TrendingArticle from '@/components/util/TrendingArticle';
 
 export default function Home() {
     return (
-        <>
+        <BlogPage>
             <Hero/>
             <SectionHeading>
                 TRENDING ON SENSE AND SCIENCE
@@ -22,6 +23,6 @@ export default function Home() {
                     <SuggestedTags/>
                 </div>
             </div>
-        </>
+        </BlogPage>
     );
 }

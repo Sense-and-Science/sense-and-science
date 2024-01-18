@@ -1,12 +1,12 @@
 import { create } from 'zustand';
 
-import { BlogArticleCompund } from '@/types';
+import { BlogArticleBrief } from '@/types';
 import { ArticleStore } from '@/types/states/article.state';
 
 export const useArticlesStore = create<ArticleStore>((set, state) => ({
   loadingPublishedArticles: true,
   publishedArticles: null,
-  setArticles: (publishedArticles: BlogArticleCompund[]) =>
+  setArticles: (publishedArticles: BlogArticleBrief[]) =>
     set(() => ({ publishedArticles })),
   removeArticles: () => {
     set(() => ({ publishedArticles: null }));

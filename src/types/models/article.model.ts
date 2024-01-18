@@ -1,4 +1,5 @@
 import { Timestamp } from 'firebase/firestore';
+import { type } from 'os';
 
 export enum BlogArticleStatus {
   DRAFT = 'DRAFT',
@@ -27,3 +28,6 @@ export interface BlogArticleCompund extends BlogArticle {
   id: string;
   authorAvatar: string | undefined
 }
+
+
+export type BlogArticleBrief = Omit<BlogArticleCompund, "content" | "createdAt" | "status" | "imageIds" | "authorContactNo">
