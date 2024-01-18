@@ -4,7 +4,7 @@ const firebaseAdminConfig = {
   credential: cert({
     projectId: process.env.PRIVATE_FIREBASE_PROJECT_ID,
     clientEmail: process.env.PRIVATE_FIREBASE_CLIENT_EMAIL,
-    privateKey: process.env.PRIVATE_FIREBASE_PRIVATE_KEY?.replace(/\\n/g, '\n'),
+    privateKey: process.env.PRIVATE_FIREBASE_PRIVATE_KEY?.replace(/\\n/g, '\n')?.replace(/\\r/g, ''),
   }),
 };
 
