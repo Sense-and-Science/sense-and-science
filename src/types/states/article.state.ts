@@ -1,12 +1,10 @@
-
-import { BlogArticleCompund } from '../';
+import { BlogArticleBrief } from '../';
 
 export type ArticleStore = {
-
-    loadingPublishedArticles: boolean
-  publishedArticles: BlogArticleCompund[] | null;
-  setArticles: (articles: BlogArticleCompund[]) => void;
+  loadingPublishedArticles: boolean;
+  publishedArticles: BlogArticleBrief[] | null;
+  setArticles: (articles: BlogArticleBrief[]) => void;
   removeArticles: () => void;
-  setLoadingPublishedArticles: (mode: boolean) => void
-  getArticle: (slug: string) => BlogArticleCompund | null
+  setLoadingPublishedArticles: (mode: boolean) => void;
+  getArticle: (slug: string) => BlogArticleBrief | null;
 };

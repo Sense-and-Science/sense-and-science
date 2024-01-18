@@ -1,6 +1,7 @@
 import { createArticle } from './createArticle';
 import { createArticleDraft } from './createArticleDraft';
 import { getPendingArticles } from './getPendingArticles';
+import { getPublishedArticleBySlug } from './getPublishedArticleBySlug';
 import { getPublishedArticles } from './getPublishedArticles';
 import { getSelfArticles } from './getSelfArticles';
 import { publishArticle } from './publishArticle';
@@ -14,4 +15,5 @@ export const articles = {
   publishArticle,
   requestUpdateForArticle,
   getPublishedArticles,
+  getPublishedArticleBySlug
 };
