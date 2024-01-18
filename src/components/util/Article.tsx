@@ -11,7 +11,7 @@ interface ArticleProps {
   article: BlogArticleCompund;
 }
 
-export default function TrendingArticle({ article }: ArticleProps) {
+export default function Article({ article }: ArticleProps) {
   const { authorName, title, createdAt, authorAvatar } = article;
 
   return (

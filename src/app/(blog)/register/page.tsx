@@ -87,11 +87,13 @@ function Register() {
 
     // else successful
     console.log(result);
-    return router.push('/admin');
+    return router.push('/login');
   };
 
   return (
     <div className='flex items-center justify-center'>
+      <title>Register | Sense & Science</title>
+      <meta name='description' content='Signup to the Sense & Science blog' />
       <div className='w-[100%] sm:w-[80%] md:w-[70%] lg:w-[60%]'>
         <h1 className='my-6 text-center text-4xl font-bold'>
           Want to become an author?

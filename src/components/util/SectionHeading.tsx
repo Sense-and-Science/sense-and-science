@@ -1,4 +1,5 @@
-import {PropsWithChildren} from "react";
+"use client"
+import { PropsWithChildren } from 'react';
 
 interface SectionHeadingProps extends PropsWithChildren {
 }

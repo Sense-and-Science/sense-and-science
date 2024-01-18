@@ -1,29 +1,32 @@
-import latestArticle from '@/assets/images/latest-article.jpg'
-import profilePicture from '@/assets/images/profile-picture.jpg'
-import Image from "next/image"
+"use client"
+import { format } from 'date-fns';
+import { enUS } from 'date-fns/locale';
+import Image from 'next/image';
+
+import { BlogArticleCompund } from '@/types';
 
 interface LatestArticleProps {
-    // latestArticle: string,
-    // profilePicture: string,
-    writerName: string,
-    title: string,
-    caption: string,
-    date: string
+    article: BlogArticleCompund
 }
 
-export default function LatestArticle({writerName, title, caption, date}: LatestArticleProps) {
+export default function LatestArticle({article}: LatestArticleProps) {
+    const {createdAt, title, authorName, authorAvatar, description, coverImage} = article
     return (
         <>
             <div className={'flex items-center gap-6'}>
-                <Image src={latestArticle} alt={'Latest Article'} width={latestArticle.width} height={latestArticle.height} className={'h-[130px] w-[130px] rounded-lg'}></Image>
+                <Image src={coverImage || ""} alt={'Latest Article'} width={130} height={130} className={'h-[130px] w-[130px] rounded-lg'}></Image>
                 <div>
                     <div className={'my-1 flex items-center gap-5'}>
-                        <Image src={profilePicture} alt={'Profile Picture'} width={profilePicture.width} height={profilePicture.height} className={'aspect-w-1 aspect-h-1 h-[2.5rem] w-[2.5rem] rounded-[50%]'}></Image>
-                        <p className={'font-semibold'}>{writerName}</p>
+                        <Image src={authorAvatar || ""} alt={'Profile Picture'} width={60} height={60} className={'aspect-w-1 aspect-h-1 h-[2.5rem] w-[2.5rem] rounded-[50%]'}></Image>
+                        <p className={'font-semibold'}>{authorName}</p>
                     </div>
                     <p className={'text-lg font-bold'}>{title}</p>
-                    <p className={'text-md font-semibold'}>{caption}</p>
-                    <p className={'text-xs'}>{date}</p>
+                    <p className={'text-md font-semibold'}>{
+                        description.slice(0, 63) + "..."
+                    }</p>
+                    <p className={'text-xs'}>{
+                        format(createdAt.toDate(), 'MMM dd, yyyy', { locale: enUS })
+                    }</p>
                 </div>
                 
             </div>

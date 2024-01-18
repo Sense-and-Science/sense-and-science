@@ -7,6 +7,7 @@ const nextConfig = {
         hostname: 'i.pravatar.cc',
       },
       { protocol: 'https', hostname: 'ik.imagekit.io' },
+      { protocol: 'https', hostname: 'fastly.picsum.photos' },
     ],
   },
 };

@@ -1,6 +1,8 @@
-import profilePicture from "@/assets/images/profile-picture.jpg"
-import authorMonth from "@/assets/images/author-month.jpg"
-import Image from "next/image"
+"use client"
+import Image from 'next/image';
+
+import authorMonth from '@/assets/images/author-month.jpg';
+import profilePicture from '@/assets/images/profile-picture.jpg';
 
 export default function AuthorOfTheMonth() {
     return (

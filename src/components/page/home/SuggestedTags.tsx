@@ -1,4 +1,5 @@
-import DiscoverButton from "@/components/util/DiscoverButton"
+"use client"
+import DiscoverButton from '@/components/util/DiscoverButton';
 
 export default function SuggestedTags() {
     return (

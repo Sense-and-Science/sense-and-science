@@ -7,8 +7,8 @@ import { storage } from '@/firebase';
 import { GetTokenResponse } from '@/types';
 
 const imageKit = new ImageKit({
-  publicKey: 'public_NHLKvXLhGfutU7mW9CBFSv2wgWw=',
-  urlEndpoint: 'https://ik.imagekit.io/vuechat/sense-and-science/',
+  publicKey: 'public_ifEo42lZZm27oCkCkxOZ6x2awPk=',
+  urlEndpoint: 'https://ik.imagekit.io/compsoc/sense-and-science/',
 });
 
 /**
