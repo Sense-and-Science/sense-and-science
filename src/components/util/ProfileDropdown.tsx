@@ -21,7 +21,7 @@ export default function ProfileDropdown() {
     setLoading(true);
     await services.users.logout();
     try {
-      await fetch('http://localhost:3000/api/logout', {
+      await fetch('/api/logout', {
         method: 'POST',
       });
     } catch (e) {
