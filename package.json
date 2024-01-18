@@ -27,6 +27,7 @@
     "@editorjs/simple-image": "^1.6.0",
     "@emotion/react": "^11.11.3",
     "@emotion/styled": "^11.11.0",
+    "@vercel/speed-insights": "^1.0.4",
     "axios": "^1.6.5",
     "date-fns": "^3.2.0",
     "editorjs-html": "^3.4.3",

@@ -53,6 +53,7 @@ export default function RootLayout({
         />
       </head>
       <body className={`${inter.className}`}>
+        
         <Providers>
           <main className='app-container'>
             <AppHeader />
