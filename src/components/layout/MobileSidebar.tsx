@@ -34,7 +34,6 @@ export function MobileSidebar() {
   const { isOpen, onOpen, onClose } = useDisclosure();
   const btnRef = React.useRef<HTMLButtonElement | null>(null);
 
-  console.log(profile);
 
   return (
     <>
@@ -89,6 +88,17 @@ export function MobileSidebar() {
                       </Link>
                     </li>
                   )}
+                {!profile && (
+                  <li>
+                    <Link
+                      href='/login'
+                      className={'text-[18px] hover:underline'}
+                      onClick={onClose}
+                    >
+                      LOGIN
+                    </Link>
+                  </li>
+                )}
                 <ThemeSwitcher />
               </ul>
             </nav>
@@ -98,7 +108,7 @@ export function MobileSidebar() {
             profile.role !== BlogUserRole.AUTHOR &&
             profile.role !== BlogUserRole.ADMIN && (
               <DrawerFooter className={'flex items-center justify-center'}>
-                <Link href={'/login'} className={'no-underline'}>
+                <Link href={'/become-an-author'} className={'no-underline'}>
                   <OutlineButton
                     accent
                     rightIcon={

@@ -24,14 +24,14 @@ export default function LatestArticle({ article }: LatestArticleProps) {
     <>
       <Link
         href={`/articles/${slug}`}
-        className={'latest-article flex items-center gap-6'}
+        className={'latest-article flex flex-col items-center gap-6 sm:flex-row'}
       >
         <Image
           src={coverImage || ''}
           alt={'Latest Article'}
           width={130}
           height={130}
-          className={'h-[130px] w-[130px] rounded-lg object-cover'}
+          className={'sm:aspect-square] aspect-[3/1.6] w-full rounded-lg  object-cover sm:h-[130px] sm:w-[130px] sm:p-4'}
         ></Image>
         <div>
           <div className={'my-1 flex items-center gap-5'}>

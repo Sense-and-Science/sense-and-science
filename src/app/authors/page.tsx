@@ -21,7 +21,6 @@ export default function Authors() {
     if (error) {
       toast('Something went wrong', { type: 'error' });
     } else if (result) {
-      console.log(result);
       setAuthors(result);
     }
     setLoadingAuthors(false);

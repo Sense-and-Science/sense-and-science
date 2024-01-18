@@ -9,7 +9,7 @@ export default function LatestArticles() {
     <>
       {' '}
       {publishedArticles && (
-        <section className={'h-[900px] w-full flex-col gap-6 py-4'}>
+        <section className={'w-full flex-col gap-6 py-4'}>
           <h1 className={'pb-4 text-[1.5rem] font-[700]'}>LATEST ARTICLE</h1>
           <div>
             {publishedArticles.map((pa) => {

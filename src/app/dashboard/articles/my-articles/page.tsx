@@ -2,6 +2,7 @@
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 import { useEffect, useState } from 'react';
+import { toast } from 'react-toastify';
 
 import DashboardPage from '@/components/layout/DashboardPage';
 import { services } from '@/services';
@@ -34,11 +35,10 @@ function MyArticles() {
           profile.contactNo || ''
         );
         if (result) {
-          console.log(result);
           setArticles(result);
         } else if (error) {
           console.log((error as Error).message);
-          alert('Error loading author articles, please try again later');
+          toast("Error loading your articles, please try again later", {type: "error"})
         }
 
         setLoadingArticles(false);

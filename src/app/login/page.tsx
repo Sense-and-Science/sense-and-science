@@ -1,6 +1,7 @@
 'use client';
 import { useRouter } from 'next/navigation';
 import { SubmitHandler, useForm } from 'react-hook-form';
+import { toast } from 'react-toastify';
 
 import BlogPage from '@/components/layout/BlogPage';
 import { services } from '@/services';
@@ -29,7 +30,7 @@ function Login() {
       await services.users.login(values.email, values.password);
 
     if (loginError) {
-      alert((loginError as Error).message);
+      toast((loginError as Error).message, { type: 'error' });
       return console.log(loginError);
     }
 
@@ -47,7 +48,7 @@ function Login() {
 
   return (
     <BlogPage>
-      <div className='flex items-center justify-center'>
+      <div className='flex h-[calc(100vh-264px)] items-center justify-center'>
         <title>Login | Sense & Science</title>
         <meta name='description' content='Login to the Sense & Science blog' />
         <div className='w-[100%] sm:w-[80%] md:w-[70%] lg:w-[60%]'>

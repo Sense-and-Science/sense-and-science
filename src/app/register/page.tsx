@@ -1,8 +1,9 @@
 'use client';
 import Image from 'next/image';
 import { useRouter } from 'next/navigation';
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import { SubmitHandler, useForm } from 'react-hook-form';
+import { toast } from 'react-toastify';
 
 import BlogPage from '@/components/layout/BlogPage';
 import { services } from '@/services';
@@ -20,17 +21,6 @@ type SignupInputs = {
 };
 
 function Register() {
-  useEffect(() => {
-    fetch('/api/get-key')
-      .then((res) => res.json())
-      .then((result) => {
-        console.log(result);
-      })
-      .catch((e) => {
-        console.log(e);
-      });
-  }, []);
-
   const {
     handleSubmit,
     register: registerInput,
@@ -82,13 +72,13 @@ function Register() {
     });
 
     if (error) {
-      alert((error as Error).message);
+      toast((error as Error).message, { type: 'error' });
       return console.log(error);
     }
 
     // else successful
-    console.log(result);
-    return router.push('/login');
+    toast('Successfully registered', { type: 'success' });
+    return router.push('/');
   };
 
   return (
