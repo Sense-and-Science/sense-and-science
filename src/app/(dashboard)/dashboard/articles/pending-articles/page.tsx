@@ -40,6 +40,7 @@ function PendingArticles() {
   }
   useEffect(() => {
     loadArticles();
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [profile, user]);
 
   async function publishArticle(articleId: string) {

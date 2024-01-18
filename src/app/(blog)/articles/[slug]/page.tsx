@@ -73,7 +73,7 @@ export default function ArticlePage({
                 width={1280}
                 height={720}
                 alt={`Cover image of ${article.title}`}
-                className='mx-auto block w-full object-cover mb-4 lg:mb-8 article-cover-image'
+                className='article-cover-image mx-auto mb-4 block w-full object-cover lg:mb-8'
               ></Image>
             )}
             <div className='article-body'>
