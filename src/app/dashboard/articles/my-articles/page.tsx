@@ -53,7 +53,7 @@ function MyArticles() {
     <DashboardPage>
       <div>
         <h1 className='my-8 flex items-center justify-between text-3xl'>
-          New author articles
+          My Articles
           <Link href={'/dashboard/articles/new'}>
             <Button colorScheme='teal'>Write new article</Button>
           </Link>

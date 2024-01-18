@@ -239,7 +239,7 @@ function Register() {
               />
             ) : null}
 
-            <Button colorScheme='teal' isLoading={isSubmitting} type='submit'>
+            <Button colorScheme='green' isLoading={isSubmitting} type='submit'>
               Submit
             </Button>
             <Link href={'/login'} className='text-blue-500'>

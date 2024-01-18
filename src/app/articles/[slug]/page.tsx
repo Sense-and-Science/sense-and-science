@@ -105,7 +105,7 @@ export default function ArticlePage({
                   width={60}
                   height={60}
                   className={
-                    'aspect-w-1 aspect-h-1 h-[2.5rem] w-[2.5rem] rounded-[50%]'
+                    'aspect-w-1 aspect-h-1 h-[2.5rem] w-[2.5rem] rounded-[50%] object-cover'
                   }
                 ></Image>
                 <p className={'font-semibold'}>{article.authorName}</p>

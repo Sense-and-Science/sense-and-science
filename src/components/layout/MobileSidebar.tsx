@@ -34,12 +34,16 @@ export function MobileSidebar() {
   const { isOpen, onOpen, onClose } = useDisclosure();
   const btnRef = React.useRef<HTMLButtonElement | null>(null);
 
+  console.log(profile);
+
   return (
     <>
       <IconButton
         aria-label={'sidebar btn'}
         onClick={onOpen}
-        className={'rounded-xl border-2 border-[var(--text-primary)] bg-[var(--bg-primary)] py-[0.9rem] text-[1.5rem] transition  hover:bg-[var(--text-primary-transparent)] md:hidden'}
+        className={
+          'rounded-xl border-2 border-[var(--text-primary)] bg-[var(--bg-primary)] text-[1.5rem] transition  hover:bg-[var(--text-primary-transparent)] md:hidden'
+        }
         icon={<Icon icon={'cil:hamburger-menu'} />}
       ></IconButton>
       <Drawer
@@ -62,12 +66,29 @@ export function MobileSidebar() {
                 {links.map((link) => {
                   return (
                     <li key={link.text}>
-                      <Link href={link.href} className={'hover:underline'} onClick={onClose}>
+                      <Link
+                        href={link.href}
+                        className={'hover:underline'}
+                        onClick={onClose}
+                      >
                         {link.text}
                       </Link>
                     </li>
                   );
                 })}
+                {profile &&
+                  (profile.role === BlogUserRole.ADMIN ||
+                    profile.role === BlogUserRole.AUTHOR) && (
+                    <li>
+                      <Link
+                        href='/dashboard'
+                        className={'text-[18px] hover:underline'}
+                        onClick={onClose}
+                      >
+                        DASHBOARD
+                      </Link>
+                    </li>
+                  )}
                 <ThemeSwitcher />
               </ul>
             </nav>
@@ -77,7 +98,7 @@ export function MobileSidebar() {
             profile.role !== BlogUserRole.AUTHOR &&
             profile.role !== BlogUserRole.ADMIN && (
               <DrawerFooter className={'flex items-center justify-center'}>
-                <Link href={'/login'} className={'no-underline'} >
+                <Link href={'/login'} className={'no-underline'}>
                   <OutlineButton
                     accent
                     rightIcon={

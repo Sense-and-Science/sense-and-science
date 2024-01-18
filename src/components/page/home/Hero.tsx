@@ -49,7 +49,7 @@ export default function Hero() {
           alt={'Compsoc Logo'}
           width={compsocLogo.width}
           height={compsocLogo.height}
-          className={'h-[2.8rem] w-[2.8rem]'}
+          className={'h-[2.8rem] w-[2.8rem] object-cover'}
         />
         <p className='text-white'>
           COMPUTER SCIENCE SOCIETY <br></br> OF UNIVERSITY OF COLOMBO
@@ -61,7 +61,7 @@ export default function Hero() {
         width={heroOverlay.width}
         height={heroOverlay.height}
         className={
-          'absolute right-[4rem] top-[50%] -z-10 h-[500px] w-[500px] translate-y-[-50%]'
+          'absolute right-[4rem] top-[50%] -z-10 h-[500px] w-[500px] translate-y-[-50%] object-cover'
         }
       />
     </div>

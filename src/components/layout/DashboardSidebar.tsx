@@ -12,7 +12,7 @@ export default function DashboardSidebar() {
   const pathname = usePathname();
 
   return (
-    <aside className='hidden w-[200px]  border-[1px] border-b-[0.5px] border-solid border-[rgba(255,255,255,0.2)] px-2 py-4 shadow-2xl md:flex  lg:w-[250px] xl:w-[300px] '>
+    <aside className='hidden w-[200px]  border-[1px] border-b-[0.5px] border-solid  border-[var(--text-primary-transparent)] px-2 py-4 md:flex  lg:w-[250px] xl:w-[300px] '>
       <ul className='flex w-full flex-col gap-2 '>
         <Link
           href={'/dashboard'}
