@@ -5,5 +5,6 @@ export interface CreateArticleDTO {
     userId: string;
     content: string
     imageIds: string[]
+    coverImage: FileList
 }
   

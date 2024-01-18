@@ -45,13 +45,13 @@ export default function RootLayout({
 
   return (
     <html lang='en'>
-      <Head>
+      <head>
         <title>Sense & Science</title>
         <meta
           name='description'
           content='Welcome to the University of Colombo Tech and Science Blog.'
         />
-      </Head>
+      </head>
       <body className={`${inter.className}`}>
         <Providers>
           <main className='app-container'>

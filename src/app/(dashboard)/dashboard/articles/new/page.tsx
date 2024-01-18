@@ -3,6 +3,8 @@
 import 'react-quill/dist/quill.snow.css';
 
 import dynamic from 'next/dynamic';
+import Image from 'next/image';
+import { useRouter } from 'next/navigation';
 import { Dispatch, LegacyRef, SetStateAction, useEffect, useMemo, useRef, useState } from 'react';
 import { SubmitHandler, useForm } from 'react-hook-form';
 import { toast, ToastContainer } from 'react-toastify';
@@ -36,10 +38,13 @@ type NewArticleInputs = {
   title: string;
   description: string;
   slug: string;
+  coverImage: FileList;
 };
 
 export default function NewArticle() {
   const { user } = useAuthStore();
+
+  const router = useRouter()
 
   const {
     handleSubmit,
@@ -57,6 +62,24 @@ export default function NewArticle() {
   const [usedImageIds, setUsedImageIds] = useState<string[]>([]);
   const [titleLength, setTitleLength] = useState(0);
   const [descriptionLength, setDescriptionLength] = useState(0);
+  const [coverImagePreview, setCoverImagePreview] = useState<string>('');
+
+  const { ref: registerRef, ...restOfTheInputParams } = registerInput(
+    'coverImage',
+    { required: { value: true, message: 'Cover image is required' } }
+  );
+
+  const handleUploadedFile = (event: React.FormEvent<HTMLInputElement>) => {
+    const target = event.target as HTMLInputElement;
+
+    if (target && target.files && target.files.length > 0) {
+      const file = target.files[0];
+      const urlImage = URL.createObjectURL(file);
+      setCoverImagePreview(urlImage);
+    } else {
+      setCoverImagePreview('');
+    }
+  };
 
   const editorRef = useRef<ReactQuill>(null);
 
@@ -87,6 +110,7 @@ export default function NewArticle() {
         imageIds: usedImageIds,
         title: values.title.trim(),
         userId: user.uid,
+        coverImage: values.coverImage
       });
       if (error) {
         if ((error as Error).message === 'Title already exists') {
@@ -105,6 +129,7 @@ export default function NewArticle() {
       if (result) {
         clearErrors();
         toast('Article successfully submitted', { type: 'success' });
+        router.replace("/dashboard/articles/my-articles")
       }
     }
   };
@@ -115,11 +140,13 @@ export default function NewArticle() {
     const titleValue = values.title || '';
     const descriptionValue = values.description || '';
     const slugValue = values.slug || '';
+    const coverImageValue = values.coverImage || null
     if (
       titleValue.trim().length > 50 &&
       descriptionValue.trim().length > 150 &&
       slugValue &&
       content.trim().length !== 0 &&
+      coverImageValue &&
       user
     ) {
       const { result, error } = await services.articles.createArticleDraft({
@@ -129,6 +156,7 @@ export default function NewArticle() {
         imageIds: usedImageIds,
         title: titleValue,
         userId: user.uid,
+        coverImage: coverImageValue
       });
       if (error) {
         if ((error as Error).message === 'Title already exists') {
@@ -257,6 +285,32 @@ export default function NewArticle() {
             {errors.slug && errors.slug.message}
           </FormErrorMessage>
         </FormControl>
+        <FormControl isInvalid={!!errors.coverImage}>
+          <FormLabel htmlFor='cover-image'>Upload the cover image</FormLabel>
+          <Input
+            id='cover-image'
+            {...restOfTheInputParams}
+            onChange={handleUploadedFile}
+            ref={(e) => {
+              registerRef(e);
+            }}
+            type='file'
+            accept='image/*'
+          />
+          <FormErrorMessage>
+            {errors.coverImage && errors.coverImage.message}
+          </FormErrorMessage>
+        </FormControl>
+        {coverImagePreview !== '' ? (
+          <Image
+            src={coverImagePreview}
+            alt='preview of profile picture'
+            width={'250'}
+            height={'250'}
+            className='mx-auto aspect-square h-auto rounded-full object-cover'
+          />
+        ) : null}
+
         <FormControl isInvalid={!!errors.description}>
           <FormLabel htmlFor='description'>Description (For SEO)</FormLabel>
           <Textarea

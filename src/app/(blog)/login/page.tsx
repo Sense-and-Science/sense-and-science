@@ -46,6 +46,8 @@ function Login() {
 
   return (
     <div className='flex items-center justify-center'>
+      <title>Login | Sense & Science</title>
+      <meta name="description" content="Login to the Sense & Science blog" />
       <div className='w-[100%] sm:w-[80%] md:w-[70%] lg:w-[60%]'>
         <h1 className='my-6 text-center text-4xl font-bold'>Welcome back !</h1>
         <form onSubmit={handleSubmit(onSubmit)} className='flex flex-col gap-4'>

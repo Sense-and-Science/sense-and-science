@@ -22,7 +22,7 @@ export default function LatestArticle({article}: LatestArticleProps) {
                     </div>
                     <p className={'text-lg font-bold'}>{title}</p>
                     <p className={'text-md font-semibold'}>{
-                        description.slice(0, 101)
+                        description.slice(0, 63) + "..."
                     }</p>
                     <p className={'text-xs'}>{
                         format(createdAt.toDate(), 'MMM dd, yyyy', { locale: enUS })

@@ -46,6 +46,8 @@ function BecomeAnAuthor() {
 
   return (
     <div className='flex items-center justify-center'>
+      <title>Become an Author | Sense & Science</title>
+      <meta name='description' content='Become an author in the Sense & Science blog' />
       <div className='w-[100%] sm:w-[80%] md:w-[70%] lg:w-[40%]'>
         <h1 className='my-6 text-center text-4xl font-bold'>
           Do you want to be an author?

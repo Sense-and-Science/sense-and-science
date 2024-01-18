@@ -53,6 +53,8 @@
   &-cover-image-preview {
     border-radius: 1rem;
     width: 100%;
+    aspect-ratio: 2 / 1;
+    object-fit: cover;
 
     @media only screen and (max-width: 992px) {
       border-radius: 0.8rem;
@@ -175,6 +177,11 @@
   p {
     font-size: 18px;
     margin-block: 1rem;
+  }
+
+  br {
+    height: 0;
+    display: block;
   }
 
   img {

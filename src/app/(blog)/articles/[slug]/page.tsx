@@ -7,6 +7,23 @@ import Image from 'next/image';
 
 import { useArticlesStore } from '@/stores';
 
+function removeEmptyPTags(htmlString: string): string {
+  const tempDiv = document.createElement('div');
+  tempDiv.innerHTML = htmlString;
+
+  const emptyPTags = tempDiv.querySelectorAll('p');
+
+  emptyPTags.forEach((emptyPTag) => {
+      const isOnlyBR = emptyPTag.textContent?.trim() === '' && emptyPTag.querySelectorAll(':not(br)').length === 0;
+      
+      if (isOnlyBR) {
+          emptyPTag.parentNode?.removeChild(emptyPTag);
+      }
+  });
+
+  return tempDiv.innerHTML;
+}
+
 export default function ArticlePage({
   params: { slug },
 }: {
@@ -59,7 +76,9 @@ export default function ArticlePage({
                 className='mx-auto block w-full object-cover mb-4 lg:mb-8 article-cover-image'
               ></Image>
             )}
-            <div className='article-body'>{parseHtml(article.content)}</div>
+            <div className='article-body'>
+              {parseHtml(removeEmptyPTags(article.content))}
+            </div>
           </article>
         )}
       </div>

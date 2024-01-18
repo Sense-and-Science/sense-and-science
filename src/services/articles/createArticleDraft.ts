@@ -1,15 +1,37 @@
 import { addDoc, and, getDocs, or, query, Timestamp, updateDoc, where } from 'firebase/firestore';
+import { v4 as uuid } from 'uuid';
 
 import { articleCollection } from '@/firebase';
 import { CreateArticleDTO } from '@/types';
 import { BlogArticleStatus } from '@/types/models/article.model';
+import { uploadFile } from '@/utils';
 
 export async function createArticleDraft(createArticleDTO: CreateArticleDTO) {
-  const { userId, content, description, imageIds, title, slug } =
+  const { userId, content, description, imageIds, title, slug, coverImage } =
     createArticleDTO;
   let result: true | null = null,
     error = null;
   try {
+    let coverImageData = {
+      id: undefined,
+      coverImageUrl: undefined,
+      coverImageThumbnailUrl: undefined,
+    } as {
+      id: string | undefined;
+      coverImageUrl: string | undefined;
+      coverImageThumbnailUrl: string | undefined;
+    };
+
+    if (coverImage) {
+      const coverImageUploadResult = await uploadFile(uuid(), coverImage);
+      if (coverImageUploadResult) {
+        coverImageData = {
+          id: coverImageUploadResult.id,
+          coverImageThumbnailUrl: coverImageUploadResult.thumbnailUrl,
+          coverImageUrl: coverImageUploadResult.url,
+        };
+      }
+    }
     const docQueryForPublishedExistence = query(
       articleCollection,
       and(
@@ -44,6 +66,7 @@ export async function createArticleDraft(createArticleDTO: CreateArticleDTO) {
         imageIds,
         title,
         slug,
+        coverImage: coverImageData.coverImageUrl,
       });
     } else {
       await addDoc(articleCollection, {
@@ -55,7 +78,8 @@ export async function createArticleDraft(createArticleDTO: CreateArticleDTO) {
         createdAt: Timestamp.now(),
         updatedAt: Timestamp.now(),
         userId,
-        status: BlogArticleStatus.DRAFT
+        status: BlogArticleStatus.DRAFT,
+        coverImage: coverImageData.coverImageUrl,
       });
     }
 
