@@ -18,7 +18,7 @@ export default function AppFooter() {
           alt={'Compsoc-logo'}
           width={compsocLogo.width}
           height={compsocLogo.height}
-          className='h-[36px] w-[36px] sm:h-[44px] sm:w-[44px] md:h-[50px] md:w-[50px]'
+          className='h-[36px] w-[36px] object-cover sm:h-[44px] sm:w-[44px] md:h-[50px] md:w-[50px]'
         ></Image>
         <p className='text-center md:text-left'>COMPUTER SCIENCE SOCIETY OF UNIVERSITY OF COLOMBO</p>
       </div>

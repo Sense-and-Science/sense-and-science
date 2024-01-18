@@ -93,7 +93,7 @@ function Login() {
               </FormErrorMessage>
             </FormControl>
 
-            <Button colorScheme='teal' isLoading={isSubmitting} type='submit'>
+            <Button colorScheme='green' isLoading={isSubmitting} type='submit'>
               Sign in
             </Button>
             <Link href={'/register'} className='text-blue-500'>

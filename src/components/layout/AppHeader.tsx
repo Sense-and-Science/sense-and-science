@@ -5,12 +5,15 @@ import Link from 'next/link';
 import { usePathname, useRouter } from 'next/navigation';
 import { useEffect } from 'react';
 
+import darkLogo from '@/assets/images/logo-b.svg';
+import lightLogo from '@/assets/images/logo-w.svg';
 import { MobileSidebar } from '@/components/layout/MobileSidebar';
 import OutlineButton from '@/components/util/OutlineButton';
 import ThemeSwitcher from '@/components/util/ThemeSwitcher';
 import { auth } from '@/firebase';
 import { services } from '@/services';
 import { useAuthStore } from '@/stores';
+import { useColorModeStore } from '@/stores/color-mode.store';
 import { BlogUserRole } from '@/types';
 import { useMediaQuery } from '@chakra-ui/react';
 import { Icon } from '@iconify/react';
@@ -19,6 +22,7 @@ import ProfileDropdown from '../util/ProfileDropdown';
 
 export default function AppHeader() {
   const { profile, setUser, removeUser } = useAuthStore();
+  const { colorMode } = useColorModeStore();
   const router = useRouter();
   const pathname = usePathname();
 
@@ -39,14 +43,11 @@ export default function AppHeader() {
       }
     });
 
-
-
     return () => {
       unsubscribe();
     };
-  // eslint-disable-next-line react-hooks/exhaustive-deps
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
-
 
   const isInTabModeOrLess = useMediaQuery('(max-width: 768px)', { ssr: true });
   return (
@@ -55,13 +56,21 @@ export default function AppHeader() {
         'flex h-[72px] items-center justify-between px-4 sm:h-[76px] md:h-[72px] lg:h-[84px] xl:h-[100px] xl:px-6'
       }
     >
-      <p
+      <Link
+        href={'/'}
         className={
-          'text-[28px] font-bold sm:text-[32px] md:text-[36px] lg:text-[48px] xl:text-[60px]'
+          'flex items-center gap-4 text-[24px] font-bold sm:text-[32px] md:text-[36px] lg:text-[48px] xl:text-[60px]'
         }
       >
+        <Image
+          src={colorMode === 'dark' ? lightLogo : darkLogo}
+          height={50}
+          width={50}
+          alt='Logo'
+          className='h-[36px] w-[36px] md:h-[44px] md:w-[44px]'
+        ></Image>
         SENSE & SCIENCE
-      </p>
+      </Link>
       <div className={'flex items-center gap-4'}>
         {!isInTabModeOrLess[0] &&
         profile &&
@@ -107,7 +116,7 @@ export default function AppHeader() {
               alt={`${profile?.firstName}'s profile picture`}
               width={50}
               height={50}
-              className='aspect-square rounded-full'
+              className='aspect-square rounded-full object-cover'
             />
             <ProfileDropdown />
           </div>

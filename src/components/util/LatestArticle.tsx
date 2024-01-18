@@ -31,7 +31,7 @@ export default function LatestArticle({ article }: LatestArticleProps) {
           alt={'Latest Article'}
           width={130}
           height={130}
-          className={'h-[130px] w-[130px] rounded-lg'}
+          className={'h-[130px] w-[130px] rounded-lg object-cover'}
         ></Image>
         <div>
           <div className={'my-1 flex items-center gap-5'}>
@@ -41,7 +41,7 @@ export default function LatestArticle({ article }: LatestArticleProps) {
               width={60}
               height={60}
               className={
-                'aspect-w-1 aspect-h-1 h-[2.5rem] w-[2.5rem] rounded-[50%]'
+                'aspect-w-1 aspect-h-1 h-[2.5rem] w-[2.5rem] rounded-[50%] object-cover'
               }
             ></Image>
             <p className={'font-semibold'}>{authorName}</p>

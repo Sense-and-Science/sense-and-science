@@ -22,7 +22,7 @@ export default function Article({ article }: ArticleProps) {
           alt={'Trending Article'}
           width={300}
           height={180}
-          className={'article-cover-image-preview'}
+          className={'article-cover-image-preview object-cover'}
         ></Image>
         <div className={'my-2 flex h-full items-center gap-5'}>
           <Image
@@ -31,7 +31,7 @@ export default function Article({ article }: ArticleProps) {
             width={60}
             height={60}
             className={
-              'aspect-w-1 aspect-h-1 h-[2.5rem] w-[2.5rem] rounded-[50%]'
+              'aspect-w-1 aspect-h-1 h-[2.5rem] w-[2.5rem] rounded-[50%] object-cover'
             }
           ></Image>
           <p className={'font-semibold'}>{authorName}</p>
