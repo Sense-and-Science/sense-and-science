@@ -13,7 +13,6 @@ export async function getPublishedArticles() {
       orderBy('updatedAt', 'desc')
     );
     const snapshot = await getDocsFromServer(articlesQuery);
-    console.log('Got snapshot with ', snapshot.docs.length, ' docs');
     const articles: BlogArticleBrief[] = [];
 
     const alreadyGotUsers: (BlogUser & { id: string })[] = [];

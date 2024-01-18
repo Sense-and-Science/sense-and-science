@@ -137,7 +137,6 @@ export default function NewArticle() {
 
   async function saveDraft() {
     const values = getValues();
-    console.log(values);
     const titleValue = values.title || '';
     const descriptionValue = values.description || '';
     const slugValue = values.slug || '';

@@ -17,7 +17,6 @@ export async function getSelfArticles(
       orderBy('createdAt')
     );
     const snapshot = await getDocsFromServer(articlesQuery);
-    console.log('Got snapshot with ', snapshot.docs.length, ' docs');
     const articles: BlogArticleCompund[] = [];
     for (const ds of snapshot.docs) {
       const applicationData = ds.data();

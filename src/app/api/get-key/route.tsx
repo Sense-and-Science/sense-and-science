@@ -10,6 +10,5 @@ const imagekit = new ImageKit({
 
 export async function GET(request: NextRequest, response: NextResponse) {
   const authenticationParameters = imagekit.getAuthenticationParameters();
-  console.log(authenticationParameters);
   return NextResponse.json(authenticationParameters, { status: 200 });
 }

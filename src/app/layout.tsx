@@ -25,7 +25,6 @@ export default function RootLayout({
     if (error) {
       toast((error as Error).message, { type: 'error' });
     } else if (result) {
-      console.log(result);
       setArticles(result);
     }
     setLoadingPublishedArticles(false);

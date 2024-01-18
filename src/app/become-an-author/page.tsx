@@ -1,6 +1,7 @@
 'use client';
 import { useRouter } from 'next/navigation';
 import { SubmitHandler, useForm } from 'react-hook-form';
+import { toast } from 'react-toastify';
 
 import BlogPage from '@/components/layout/BlogPage';
 import { services } from '@/services';
@@ -31,9 +32,9 @@ function BecomeAnAuthor() {
           userId: user.uid,
         });
       if (result) {
-        alert(
-          'Your application was successfully submitted, you will be contacted upon confirmation'
-        );
+        toast('Your application was successfully submitted', {
+          type: 'success',
+        });
         const { result, error } = await services.users.getUser(user.uid);
         if (!error && result) {
           setUser(user, result);

@@ -13,7 +13,6 @@ export async function getAuthorApplications() {
       orderBy('createdAt')
     );
     const snapshot = await getDocsFromServer(applicationsQuery);
-    console.log('Got snapshot with ', snapshot.docs.length, ' docs');
     const applications: BlogAuthorApplicationCompund[] = [];
     for (const ds of snapshot.docs) {
       const applicationData = ds.data();
@@ -27,7 +26,6 @@ export async function getAuthorApplications() {
           contactNo: userData.contactNo,
           id: ds.id,
         };
-        console.log('Created document ', data);
         applications.push(data);
       }
     }

@@ -1,6 +1,7 @@
 'use client';
 import { useRouter } from 'next/navigation';
 import { useEffect, useState } from 'react';
+import { toast } from 'react-toastify';
 
 import DashboardPage from '@/components/layout/DashboardPage';
 import { services } from '@/services';
@@ -27,11 +28,12 @@ function Requests() {
     const { result, error } =
       await services.authorApplications.getAuthorApplications();
     if (result) {
-      console.log(result);
       setApplications(result);
     } else if (error) {
       console.log((error as Error).message);
-      alert('Error loading author applications, please try again later');
+      toast('Error loading author applications, please try again later', {
+        type: 'error',
+      });
     }
 
     setLoadingApplications(false);
@@ -59,7 +61,7 @@ function Requests() {
       );
 
     if (error) {
-      alert('Something went wrong, please try again later');
+      toast('Something went wrong, please try again later', { type: 'error' });
     }
 
     setApproving(false);

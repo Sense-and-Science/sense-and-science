@@ -23,15 +23,6 @@ export async function uploadFile(uniqueId: string, files: FileList) {
 
     const file = files.item(0);
     if (file) {
-      console.log(
-        'File is ',
-        file,
-        ' storage is ',
-        storage,
-        ' type is ',
-        file.type
-      );
-
       const fileUploadResult = await imageKit.upload({
         file,
         fileName: `${uniqueId}-${file.name}`,

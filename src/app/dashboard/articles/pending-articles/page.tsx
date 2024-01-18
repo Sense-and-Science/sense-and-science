@@ -29,11 +29,12 @@ function PendingArticles() {
       setLoadingArticles(true);
       const { result, error } = await services.articles.getPendingArticles();
       if (result) {
-        console.log(result);
         setArticles(result);
       } else if (error) {
         console.log((error as Error).message);
-        alert('Error loading author articles, please try again later');
+        toast('Error loading pending articles, please try again later', {
+          type: 'error',
+        });
       }
 
       setLoadingArticles(false);
