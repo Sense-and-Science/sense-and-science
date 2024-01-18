@@ -50,7 +50,7 @@ function MyArticles() {
 
   return (
     <div>
-      <h1 className='my-8 text-3xl flex items-center justify-between'>
+      <h1 className='my-8 flex items-center justify-between text-3xl'>
         New author articles
         <Link href={'/dashboard/articles/new'}>
           <Button colorScheme='teal'>Write new article</Button>
