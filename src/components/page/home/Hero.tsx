@@ -61,7 +61,7 @@ export default function Hero() {
         width={heroOverlay.width}
         height={heroOverlay.height}
         className={
-          'absolute right-[4rem] top-[50%] -z-10 h-[500px] w-[500px] translate-y-[-50%] object-cover'
+          'absolute right-[4rem] top-[20%] -z-10 h-[500px] w-[500px] translate-y-[-50%] object-cover'
         }
       />
     </div>

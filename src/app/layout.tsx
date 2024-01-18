@@ -42,6 +42,7 @@ export default function RootLayout({
     <html lang='en'>
       <head>
         <title>Sense & Science</title>
+        <link rel='icon' href='/favicon.ico' />
         <meta
           name='description'
           content='Welcome to the University of Colombo Tech and Science Blog.'
