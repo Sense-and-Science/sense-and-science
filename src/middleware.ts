@@ -5,6 +5,10 @@ import type { NextRequest } from 'next/server';
 export async function middleware(request: NextRequest, response: NextResponse) {
   const session = request.cookies.get('session');
 
+  if (request.url.includes('/become-an-author')) {
+    return NextResponse.next();
+  }
+
   //Return to /login if don't have a session
   if (!session) {
     return NextResponse.redirect(new URL('/login', request.url));
@@ -17,10 +21,8 @@ export async function middleware(request: NextRequest, response: NextResponse) {
     },
   });
 
-
   //Return to /login if token is not authorized
   if (responseAPI.status !== 200) {
-
     return NextResponse.redirect(new URL('/login', request.url));
   }
 
@@ -29,5 +31,5 @@ export async function middleware(request: NextRequest, response: NextResponse) {
 
 //Add your protected routes
 export const config = {
-  matcher: ['/dashboard/:path*', "/become-an-author"],
+  matcher: ['/dashboard/:path*', '/become-an-author'],
 };
