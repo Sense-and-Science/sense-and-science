@@ -86,7 +86,7 @@ export default function AppHeader() {
                   />
                 }
               >
-                Become an Author
+                Become an Authors
               </OutlineButton>
             </Link>
           </>
