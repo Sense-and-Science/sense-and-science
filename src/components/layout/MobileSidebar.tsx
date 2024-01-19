@@ -24,7 +24,7 @@ const links = [
     href: '/articles',
   },
   {
-    text: 'AUTHORS',
+    text: 'MEMBERS',
     href: '/authors',
   },
 ] as const;
