@@ -11,6 +11,7 @@ import { Icon } from '@iconify/react/dist/iconify.js';
 
 export default function Authors() {
   const [loadingAuthors, setLoadingAuthors] = useState(true);
+  const [members, setMembers] = useState<BlogUserCompound[] | null>(null);
   const [authors, setAuthors] = useState<BlogUserCompound[] | null>(null);
 
   const [developers, setDevelopers] = useState<BlogUserCompound[] | null>(null);
@@ -21,7 +22,15 @@ export default function Authors() {
     if (error) {
       toast('Something went wrong', { type: 'error' });
     } else if (result) {
-      setAuthors(result);
+      setMembers(result);
+      setAuthors(
+        result.filter((r) => {
+          if (r.firstName === 'Randima' || r.firstName === 'Nethsara') {
+            return false;
+          }
+          return true;
+        })
+      );
     }
     setLoadingAuthors(false);
   }
@@ -31,12 +40,12 @@ export default function Authors() {
   }, []);
 
   useEffect(() => {
-    if (authors && authors.length >= 2) {
-      const randima = authors.find((a) => a.firstName === 'Randima');
-      const nethsara = authors.find((a) => a.firstName === 'Nethsara');
+    if (members && members.length >= 2) {
+      const randima = members.find((a) => a.firstName === 'Randima');
+      const nethsara = members.find((a) => a.firstName === 'Nethsara');
       if (randima && nethsara) setDevelopers([nethsara, randima]);
     }
-  }, [authors]);
+  }, [members]);
 
   return (
     <BlogPage>
